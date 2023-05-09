@@ -15,7 +15,6 @@ import org.springframework.http.ResponseEntity;
 
 @RestController
 @RequestMapping(value="/user", produces=MediaType.APPLICATION_JSON_VALUE)
-@ResponseBody
 public class UserResource {
 
     @Autowired
