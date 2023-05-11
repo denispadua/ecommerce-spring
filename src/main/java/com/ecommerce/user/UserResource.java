@@ -8,6 +8,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import jakarta.validation.Valid;
+
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -25,15 +29,11 @@ public class UserResource {
         List<UserModel> lsUser = userRepository.findAll();
         return UserResponseHander.userResponse(lsUser);
     }
-
+    
     @PostMapping()
-    public ResponseEntity<Object> createUser(@RequestBody UserModel jsonUser){
+    public ResponseEntity<Object> createUser(@Valid @RequestBody UserModel jsonUser){
         UserModel user = new UserModel();
-        user.setName(jsonUser.getName());
-        user.setBirthDate(jsonUser.getBirthDate());
-        user.setCpf(jsonUser.getCpf());
-        user.setEmail(jsonUser.getEmail());
-        user.setPassword(jsonUser.getPassword());
+        BeanUtils.copyProperties(jsonUser, user);
         UserModel result = userRepository.insert(user);
         return UserResponseHander.userResponse(result);
     }
