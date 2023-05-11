@@ -1,6 +1,8 @@
 package com.ecommerce.user;
 import java.time.LocalDate;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -11,10 +13,19 @@ public class UserModel {
     @Id
     private String id;
     
+    @NotBlank(message = "Field name is not valid")
     private String name;
+
+    @NotBlank
     private String cpf;
+
     private LocalDate birthDate;
+
+    @NotBlank
     private String password;
+
+    @NotBlank
+    @Email
     private String email;
 
     public String getName() {
