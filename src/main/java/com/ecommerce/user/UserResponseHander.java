@@ -19,6 +19,6 @@ public class UserResponseHander {
     public static ResponseEntity<Object> userResponse(UserModel user){
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("data", user);
-        return new ResponseEntity<Object>(map, HttpStatus.OK);
+        return new ResponseEntity<Object>(map, HttpStatus.CREATED);
     }
 }
