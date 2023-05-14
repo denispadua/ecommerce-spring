@@ -8,9 +8,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ecommerce.utils.ResponseHandler;
+
 import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
@@ -24,17 +27,17 @@ public class UserResource {
    
     @GetMapping()
     public ResponseEntity<Object> getUsers(){
-        return UserResponseHander.userResponse(userService.getUsers());
+        return ResponseHandler.response(userService.getUsers(), HttpStatus.OK);
     }
     
     @PostMapping()
     public ResponseEntity<Object> createUser(@Valid @RequestBody UserModel jsonUser){
-        return UserResponseHander.userResponse(userService.createUser(jsonUser));
+        return ResponseHandler.response(userService.createUser(jsonUser), HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Object> getUserById(@PathVariable String id){
-        return UserResponseHander.userResponse(userService.getUserById(id));
+        return ResponseHandler.response(userService.getUserById(id), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
