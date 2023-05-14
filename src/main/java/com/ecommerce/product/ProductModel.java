@@ -19,7 +19,6 @@ public class ProductModel {
     private String category;
     @NotBlank
     private String description;
-    @NotBlank
     private BigDecimal value;
     private String photoUrl;
 
