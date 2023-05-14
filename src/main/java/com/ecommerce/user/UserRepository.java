@@ -8,8 +8,8 @@ import org.springframework.data.mongodb.repository.Query;
 
 public interface UserRepository extends MongoRepository<UserModel, String> {
     
-    @Query("{name:'?0'}")
-    UserModel findItemByName(String name);
+    @Query("{_id:'?0'}")
+    UserModel findItemById(String id);
     
     List<UserModel> findAll();
     
